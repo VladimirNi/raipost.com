@@ -3,6 +3,11 @@ import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog'))
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+	.slice(0, 6);
 ---
 
 <!doctype html>
@@ -35,14 +40,62 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				padding: 1rem;
 				background-color: #f8f9fa; /* Светлый фон для футера */
 			}
+			.logo-container {
+				text-align: center;
+				margin: 2rem 0;
+			}
+			.logo-container img {
+				width: 200px;
+				height: 200px;
+				object-fit: contain;
+			}
+			.latest-posts {
+				margin: 4rem 0;
+			}
+			.latest-posts h2 {
+				text-align: center;
+				margin-bottom: 2rem;
+			}
+			.view-all-container {
+				text-align: center;
+			}
 		</style>
 	</head>
 	<body>
 		<Header />
 		<main>
-			<img src="/logo.png" alt="RAIPost.com Logo">
-			<h1>Добро пожаловать на RAIPost.com!</h1>
-			<p>Ваш новый сайт, созданный с помощью Astro.</p>
+			<div class="logo-container">
+				<img src="/logo.png" alt="RAIPost.com Logo">
+				<h1>Добро пожаловать на RAIPost.com!</h1>
+			</div>
+
+			<section class="latest-posts">
+				<h2>Последние публикации</h2>
+				<div class="post-grid">
+					{
+						posts.map((post) => (
+							<article class="post-card">
+								<a href={`/blog/${post.slug}/`}>
+									<img src={post.data.heroImage || '/blog-placeholder-1.jpg'} alt="">
+									<div class="post-card-content">
+										<h3>{post.data.title}</h3>
+										<time datetime={post.data.pubDate.toISOString()}>
+											{post.data.pubDate.toLocaleDateString('ru-RU', {
+												year: 'numeric',
+												month: 'long',
+												day: 'numeric',
+											})}
+										</time>
+									</div>
+								</a>
+							</article>
+						))
+					}
+				</div>
+				<div class="view-all-container">
+					<a href="/blog" class="view-all-button">Все публикации</a>
+				</div>
+			</section>
 		</main>
 		<Footer />
 	</body>
