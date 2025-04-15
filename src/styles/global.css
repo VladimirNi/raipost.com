@@ -5,22 +5,21 @@
  */
 
 :root {
-	--text-color: #1a1a1a;
-	--link-color: #4B0082;
-	--background-color: #ffffff;
-	--container-background: #ffffff;
-	--secondary-color: #4a4a4a;
-	--accent: 76, 40, 130;
-	--accent-light: 147, 112, 219;
-	--accent-dark: 48, 25, 82;
-	--accent-gradient: linear-gradient(45deg, rgb(var(--accent)), rgb(var(--accent-light)) 30%, white 60%);
-	--black: 26, 26, 26;
-	--gray: 74, 74, 74;
-	--gray-light: 242, 242, 242;
-	--gray-dark: 51, 51, 51;
-	--box-shadow:
-		0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%),
-		0 16px 32px rgba(var(--gray), 33%);
+	--text-color: #ffffff;
+	--link-color: #b794f6;
+	--background-color: #1a1a1a;
+	--container-background: #2d2d2d;
+	--secondary-color: #b0b0b0;
+	--accent: 183, 148, 246;
+	--accent-light: 208, 184, 255;
+	--accent-dark: 147, 112, 219;
+	--accent-gradient: linear-gradient(45deg, rgb(var(--accent)), rgb(var(--accent-light)) 30%, rgb(var(--accent-dark)) 60%);
+	--black: 255, 255, 255;
+	--gray: 176, 176, 176;
+	--gray-light: 45, 45, 45;
+	--gray-dark: 230, 230, 230;
+	--box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.4),
+		0 16px 32px rgba(0, 0, 0, 0.4);
 }
 @font-face {
 	font-family: 'Atkinson';
@@ -120,9 +119,10 @@ img {
 	border-radius: 4px;
 }
 code {
+	background-color: rgba(255, 255, 255, 0.1);
+	color: var(--accent-light);
 	padding: 2px 5px;
-	background-color: rgb(var(--gray-light));
-	border-radius: 2px;
+	border-radius: 4px;
 }
 pre {
 	padding: 1.5em;
@@ -132,10 +132,11 @@ pre > code {
 	all: unset;
 }
 blockquote {
-	border-left: 4px solid var(--accent);
-	padding: 0 0 0 20px;
-	margin: 0px;
-	font-size: 1.333em;
+	border-left: 4px solid rgb(var(--accent));
+	background-color: rgba(var(--accent), 0.1);
+	padding: 1em 1em 1em 2em;
+	margin: 1em 0;
+	border-radius: 0 8px 8px 0;
 }
 hr {
 	border: none;
@@ -151,10 +152,13 @@ hr {
 	background: var(--container-background);
 	border-radius: 8px;
 	overflow: hidden;
-	transition: transform 0.3s ease;
+	transition: all 0.3s ease;
+	border: 1px solid rgba(255, 255, 255, 0.1);
 }
 .post-card:hover {
 	transform: translateY(-5px);
+	border-color: rgba(255, 255, 255, 0.2);
+	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 .post-card img {
 	width: 100%;
@@ -215,14 +219,15 @@ hr {
 /* Обновляем стили кнопок */
 .button {
 	background-color: var(--link-color);
-	color: #ffffff;
+	color: #1a1a1a;
 	padding: 0.5em 1em;
 	border-radius: 4px;
 	text-align: center;
-	transition: background-color 0.3s ease;
+	transition: all 0.3s ease;
 }
 
 .button:hover {
-	background-color: #380062;
+	background-color: rgb(var(--accent-light));
 	text-decoration: none;
+	transform: translateY(-2px);
 }
