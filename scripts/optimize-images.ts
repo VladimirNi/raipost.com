@@ -4,6 +4,7 @@ import path from 'path';
 
 const PUBLIC_DIR = 'public';
 const SUPPORTED_FORMATS = ['.jpg', '.jpeg', '.png'];
+const MAX_WIDTH = 800;
 
 async function processDirectory(dirPath: string) {
   const entries = await fs.readdir(dirPath, { withFileTypes: true });
@@ -21,7 +22,8 @@ async function processDirectory(dirPath: string) {
           
           const inputBuffer = await fs.readFile(fullPath);
           const optimizedBuffer = await optimizeImage(inputBuffer, {
-            quality: 80,
+            width: MAX_WIDTH,
+            quality: 85,
             format: 'webp'
           });
           
