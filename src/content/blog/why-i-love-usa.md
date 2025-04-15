@@ -2,7 +2,7 @@
 title: 'Why I Love the USA – From the Heart of a 21-Year-Old Girl'
 description: 'A personal perspective on what makes America special through the eyes of a young woman.'
 pubDate: '2024-01-15'
-heroImage: '/blog/usa-flag.jpg'
+heroImage: '/blog/usa-flag.webp'
 ---
 
 Hi, I'm Mia. I'm 21 years old, and I just want to say this straight from the heart:
